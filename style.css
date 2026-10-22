@@ -1,0 +1,798 @@
+
+/* =========================
+   1. GLOBAL STYLES
+========================= */
+
+:root {
+  --bg: #190914;
+  --bg-light: #28101f;
+  --pink: #ff8fb7;
+  --pink-light: #ffd1e1;
+  --rose: #f45d91;
+  --white: #fff7fb;
+  --muted: #d6b9c8;
+  --border: rgba(255, 190, 215, 0.2);
+  --card-bg: rgba(45, 17, 37, 0.88);
+  --shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--pink-light);
+  outline-offset: 5px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* =========================
+   2. FIRST PAGE / HERO
+========================= */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(164, 49, 105, 0.2),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255, 92, 151, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(145deg, #190914, #2a1023 55%, #170811);
+}
+
+.ambient {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ambient-one {
+  top: 5%;
+  left: 5%;
+  background: #ff4f91;
+}
+
+.ambient-two {
+  right: 5%;
+  bottom: 5%;
+  background: #a638bd;
+}
+
+.stars {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--pink-light);
+  font-size: 20px;
+  letter-spacing: 12px;
+  opacity: 0.65;
+  white-space: nowrap;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+.birthday-card {
+  position: relative;
+  width: min(100%, 650px);
+  padding: clamp(30px, 6vw, 65px);
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(65, 26, 51, 0.8),
+    rgba(30, 11, 25, 0.94)
+  );
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: cardAppear 1s ease both;
+}
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+.heart-icon {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  margin: 26px auto 22px;
+  border: 1px solid rgba(255, 143, 183, 0.4);
+  border-radius: 50%;
+  color: var(--pink-light);
+  font-size: 38px;
+  box-shadow: 0 0 35px rgba(255, 100, 155, 0.12);
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.intro {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.birthday-card h1 {
+  color: var(--white);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(37px, 7vw, 64px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.name {
+  display: inline-block;
+  margin-top: 5px;
+  color: var(--pink-light);
+  font-style: italic;
+  text-shadow: 0 0 35px rgba(255, 143, 183, 0.22);
+}
+
+.message {
+  max-width: 430px;
+  margin: 24px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.decorative-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin: 28px 0;
+  color: var(--pink);
+}
+
+.decorative-line .line {
+  width: 45px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--pink)
+  );
+}
+
+.decorative-line .line:nth-of-type(2) {
+  transform: rotate(180deg);
+}
+
+.surprise-btn,
+.close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 15px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff8fb7, #ef5b98);
+  color: #351022;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(244, 93, 145, 0.2);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.surprise-btn:hover,
+.close-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(244, 93, 145, 0.35);
+  filter: brightness(1.06);
+}
+
+.surprise-btn:active,
+.close-btn:active {
+  transform: scale(0.98);
+}
+
+.surprise-btn span {
+  font-size: 18px;
+}
+
+.footer-note {
+  margin-top: 24px;
+  color: #a9899b;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Floating hearts */
+
+.floating-heart {
+  position: absolute;
+  color: var(--pink);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: floatHeart 6s ease-in-out infinite;
+}
+
+.heart-one {
+  top: 24%;
+  left: 12%;
+  font-size: 34px;
+}
+
+.heart-two {
+  right: 12%;
+  top: 37%;
+  font-size: 24px;
+  animation-delay: 1s;
+}
+
+.heart-three {
+  right: 20%;
+  bottom: 13%;
+  font-size: 36px;
+  animation-delay: 2s;
+}
+
+/* =========================
+   3. MEMORIES SECTION
+========================= */
+
+.memories {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 22px;
+  text-align: center;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(160, 52, 101, 0.18),
+      transparent 45%
+    ),
+    #1d0b17;
+}
+
+.memories-title {
+  margin-top: 20px;
+  color: var(--white);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(32px, 6vw, 54px);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.memories-title span {
+  color: var(--pink-light);
+  font-style: italic;
+}
+
+.memories-intro {
+  max-width: 440px;
+  margin: 20px auto 45px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  justify-content: center;
+  gap: 28px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.memory-card {
+  padding: 12px 12px 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  transform: rotate(-2deg);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.memory-card:nth-child(2) {
+  transform: rotate(2deg);
+}
+
+.memory-card:hover {
+  transform: translateY(-7px) rotate(0);
+  border-color: rgba(255, 143, 183, 0.5);
+}
+
+.memory-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 9px;
+  background: #321427;
+}
+
+.memory-card figcaption {
+  padding-top: 17px;
+  color: var(--pink-light);
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+}
+
+/* =========================
+   4. SURPRISE POPUP OVERLAY
+========================= */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  background: rgba(10, 3, 9, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.popup.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* =========================
+   5. AUTO-SCROLL POPUP CARD
+========================= */
+
+.popup-card {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: 85vh;
+  max-height: 85svh;
+  padding: clamp(24px, 5vw, 42px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rose) rgba(255, 255, 255, 0.06);
+
+  border: 1px solid rgba(255, 170, 205, 0.3);
+  border-radius: 24px;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(150, 43, 93, 0.23),
+      transparent 45%
+    ),
+    linear-gradient(145deg, #321429, #1d0b17);
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(244, 93, 145, 0.08);
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  transform: translateY(25px) scale(0.97);
+  transition: transform 0.4s ease;
+}
+
+.popup.show .popup-card {
+  transform: translateY(0) scale(1);
+}
+
+/* Popup scrollbar */
+
+.popup-card::-webkit-scrollbar {
+  width: 5px;
+}
+
+.popup-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+.popup-card::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    var(--pink),
+    var(--rose)
+  );
+  border-radius: 10px;
+}
+
+.popup-card::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-light);
+}
+
+/* Close icon */
+
+.close-popup {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin: -8px -8px 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.close-popup:hover {
+  background: rgba(255, 143, 183, 0.2);
+  transform: rotate(90deg);
+}
+
+.popup-heart {
+  clear: both;
+  margin: 8px 0 12px;
+  color: var(--pink);
+  font-size: 38px;
+  text-align: center;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.popup-card > .eyebrow {
+  text-align: center;
+}
+
+.popup-card h2 {
+  margin: 12px 0 25px;
+  color: var(--pink-light);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(27px, 5vw, 38px);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* =========================
+   6. COUPLE PHOTO FRAMES
+========================= */
+
+.couple-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+  max-width: 400px;
+  margin: 0 auto 30px;
+}
+
+.couple-photo {
+  padding: 9px 9px 14px;
+  border: 1px solid rgba(255, 200, 220, 0.6);
+  border-radius: 7px;
+  background: #fff7fb;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  transform: rotate(-3deg);
+}
+
+.couple-photo:nth-child(2) {
+  transform: rotate(3deg);
+}
+
+.couple-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #e9cbd9;
+}
+
+.couple-photo figcaption {
+  padding-top: 12px;
+  color: #6d2447;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* =========================
+   7. BIRTHDAY DATE
+========================= */
+
+.birthday-date {
+  margin: 25px 0;
+  padding: 20px 15px;
+  border: 1px solid rgba(255, 143, 183, 0.22);
+  border-radius: 15px;
+  background: rgba(255, 143, 183, 0.055);
+  text-align: center;
+}
+
+.date-icon {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.date-label {
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.date-value {
+  margin-top: 9px;
+  color: var(--pink-light);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(20px, 4vw, 26px);
+}
+
+/* =========================
+   8. BIRTHDAY MESSAGE
+========================= */
+
+.popup-message {
+  margin: 24px 0 20px;
+  color: #f1dce6;
+  font-size: 14px;
+  line-height: 2;
+  text-align: center;
+  white-space: normal;
+}
+
+.popup-signature {
+  margin: 22px 0;
+  color: var(--pink-light);
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+.close-btn {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  margin: 25px auto 5px;
+  text-align: center;
+}
+
+/* =========================
+   9. ANIMATIONS
+========================= */
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(8deg);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.35;
+    transform: translateX(-50%) scale(0.95);
+  }
+
+  to {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+/* =========================
+   10. RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 25px 15px;
+  }
+
+  .birthday-card {
+    padding: 35px 22px;
+    border-radius: 22px;
+  }
+
+  .stars {
+    top: 4%;
+    font-size: 15px;
+    letter-spacing: 7px;
+  }
+
+  .heart-one {
+    left: 5%;
+    top: 14%;
+    font-size: 25px;
+  }
+
+  .heart-two {
+    right: 5%;
+    top: 25%;
+    font-size: 20px;
+  }
+
+  .heart-three {
+    right: 8%;
+    bottom: 5%;
+    font-size: 27px;
+  }
+
+  .message {
+    font-size: 13px;
+  }
+
+  .memories {
+    padding: 75px 17px;
+  }
+
+  .memory-grid {
+    gap: 16px;
+  }
+
+  .memory-card {
+    padding: 8px 8px 14px;
+  }
+
+  .memory-card figcaption {
+    font-size: 12px;
+  }
+
+  .popup {
+    padding: 12px;
+  }
+
+  .popup-card {
+    width: 100%;
+    max-height: 88vh;
+    max-height: 88svh;
+    padding: 24px 18px;
+    border-radius: 19px;
+  }
+
+  .couple-photos {
+    gap: 12px;
+  }
+
+  .couple-photo {
+    padding: 7px 7px 11px;
+  }
+
+  .couple-photo figcaption {
+    font-size: 12px;
+  }
+
+  .popup-message {
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .date-label {
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .birthday-card {
+    padding: 30px 16px;
+  }
+
+  .surprise-btn,
+  .close-btn {
+    padding: 13px 19px;
+    font-size: 12px;
+  }
+
+  .couple-photos {
+    gap: 8px;
+  }
+
+  .popup-card {
+    padding: 22px 14px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
